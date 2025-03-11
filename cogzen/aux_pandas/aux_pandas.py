@@ -28,9 +28,9 @@ def fix_column_names(df0, lowercase=False):
 
 def _context_pandas(
     max_columns=222,
-    max_colwidth=44,
+    max_colwidth=66,
     width=2222,
-    max_rows=44,
+    max_rows=88,
     min_rows=33,
 ):
     """Apply custom context to dataframe representation (ExitStack)."""
@@ -76,6 +76,7 @@ def repr_df(df0, **opt):
         _ = [stack.enter_context(cont) for cont in _context_pandas(**opt)]
         return str(df0)
 
+
 def split_dataframe(dframe, max_rows):
     """Split pandas dataframe into chunks with max_rows.
 
@@ -100,5 +101,7 @@ def split_dataframe(dframe, max_rows):
     """
     max_rows = int(max_rows)
     chunks = len(dframe) // max_rows + (1 if len(dframe) % max_rows else 0)
-    return {f'chunk_{i+1:04d}':
-            dframe[i*max_rows:(i+1)*max_rows] for i in range(chunks)}
+    return {
+        f"chunk_{i+1:04d}": dframe[i * max_rows : (i + 1) * max_rows]
+        for i in range(chunks)
+    }
