@@ -35,6 +35,8 @@ from . import aux_srsly
 from .aux_srsly import jsonable
 from .aux_srsly import yamlstr
 
+from . import aux_bids
+
 
 def get_module_version():
     return __version__
